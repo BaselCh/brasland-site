@@ -1,0 +1,106 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import logoWhite from '../assets/LOGOTIPO-BRANCO-E-LARANJA.svg';
+import logoBrand from '../assets/LOGOTIPO-BRASLAND.svg';
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Escavadeiras hidráulicas', path: '#' },
+    { name: 'Peças', path: '#' },
+    { name: 'Serviços', path: '#' },
+    { name: 'Quem somos', path: '#' },
+    { name: 'Insights', path: '/insights' },
+    { name: 'Contato', path: '#' },
+  ];
+
+  const isHomePage = location.pathname === '/';
+  const shouldShowBg = isScrolled || !isHomePage;
+  const textColorClass = shouldShowBg ? 'text-brand-blue' : 'text-white';
+  const currentLogo = shouldShowBg ? logoBrand : logoWhite;
+
+  return (
+    <header 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        shouldShowBg ? 'bg-white/90 backdrop-blur-md shadow-xl py-3 md:py-4' : 'bg-transparent py-6 md:py-8'
+      }`}
+    >
+      <div className="container mx-auto px-4 md:px-8 lg:px-12 flex justify-between items-center h-full">
+        {/* Logo */}
+        <Link to="/" className="flex items-center flex-shrink-0">
+          <img 
+            src={currentLogo} 
+            alt="Brasland Logo" 
+            className="h-3 md:h-3.5 lg:h-4 w-auto transition-all duration-500" 
+          />
+        </Link>
+
+        {/* Desktop Nav - Centered */}
+        <nav className="hidden lg:flex flex-1 justify-center items-center space-x-4 xl:space-x-8 px-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className={`text-[12px] xl:text-[13px] font-bold transition-all hover:text-brand-orange uppercase tracking-[0.1em] whitespace-nowrap ${textColorClass} ${
+                location.pathname === link.path && isHomePage ? 'text-brand-orange' : ''
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* CTA Button - Right Aligned */}
+        <div className="hidden lg:flex flex-shrink-0 justify-end items-center">
+          <button className="bg-brand-orange hover:bg-brand-orange/90 text-white px-6 py-3 rounded-full text-[12px] font-black transition-all shadow-lg hover:shadow-brand-orange/30 uppercase tracking-tighter hover:translate-y-[-1px] whitespace-nowrap">
+            Solicitar orçamento
+          </button>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="lg:hidden p-2 rounded-lg"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={24} className={textColorClass} /> : <Menu size={24} className={textColorClass} />}
+        </button>
+      </div>
+
+      {/* Mobile Nav */}
+      {isMenuOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl py-10 px-8 animate-in slide-in-from-top duration-300 border-t border-gray-100">
+          <div className="flex flex-col space-y-7 text-center">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-[14px] font-bold text-brand-blue hover:text-brand-orange transition-colors uppercase tracking-[0.2em]"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <button className="bg-brand-orange text-white w-full py-5 rounded-full font-black shadow-xl uppercase tracking-widest mt-4">
+              Solicitar orçamento
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
