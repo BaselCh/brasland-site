@@ -20,7 +20,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
-  const horizontalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // 1. Initialize Lenis Smooth Scrolling
@@ -28,7 +27,6 @@ const Home = () => {
       lerp: 0.1,
       wheelMultiplier: 1,
       gestureOrientation: 'vertical',
-      normalizeWheel: true,
       smoothWheel: true,
     });
 
