@@ -2,12 +2,10 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowRight, Zap, Target, Maximize, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 import product1 from '../assets/products/product-1.png';
 import product2 from '../assets/products/product-2.png';
-import diferencialImg from '../assets/diferencial.png';
 import engImg from '../assets/qqq1.png';
 import heroBg from '../assets/ttr1q.png';
 import ctaBg from '../assets/tim.png';
