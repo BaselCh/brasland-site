@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import logoWhite from '../assets/LOGOTIPO-BRANCO-E-LARANJA.svg';
 import logoBrand from '../assets/LOGOTIPO-BRASLAND.svg';
 
@@ -19,9 +19,17 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Escavadeiras hidráulicas', path: '#' },
+    { 
+      name: 'Escavadeiras hidráulicas', 
+      path: '/escavadeiras',
+      dropdown: [
+        { name: 'BR-X 500', path: '#' },
+        { name: 'BR-X 220', path: '#' },
+        { name: 'CASE CX130C', path: '#' },
+      ]
+    },
     { name: 'Peças', path: '#' },
-    { name: 'Serviços', path: '#' },
+    { name: 'Servيços', path: '#' },
     { name: 'Quem somos', path: '#' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contato', path: '#' },
@@ -51,15 +59,31 @@ const Header = () => {
         {/* Desktop Nav - Centered */}
         <nav className="hidden lg:flex flex-1 justify-center items-center space-x-4 xl:space-x-8 px-4">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-[12px] xl:text-[13px] font-bold transition-all hover:text-brand-orange uppercase tracking-[0.1em] whitespace-nowrap ${textColorClass} ${
-                location.pathname === link.path && isHomePage ? 'text-brand-orange' : ''
-              }`}
-            >
-              {link.name}
-            </Link>
+            <div key={link.name} className="relative group">
+              <Link
+                to={link.path}
+                className={`text-[12px] xl:text-[13px] font-bold transition-all hover:text-brand-orange uppercase tracking-[0.1em] whitespace-nowrap flex items-center gap-1 ${textColorClass} ${
+                  location.pathname === link.path ? 'text-brand-orange' : ''
+                }`}
+              >
+                {link.name}
+                {link.dropdown && <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />}
+              </Link>
+              
+              {link.dropdown && (
+                <div className="absolute top-full left-0 mt-4 w-48 bg-white shadow-2xl rounded-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 border border-gray-100 py-2">
+                  {link.dropdown.map((sub) => (
+                    <Link
+                      key={sub.name}
+                      to={sub.path}
+                      className="block px-6 py-3 text-[12px] font-bold text-brand-blue hover:bg-gray-50 hover:text-brand-orange transition-colors"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
 
