@@ -190,7 +190,7 @@ const Home = () => {
             <p className="text-brand-gray text-xl mb-16 leading-relaxed font-medium">
               Engenharia japonesa, aperfeiçoada para operações brasileiras. Nossa tecnologia foca na economia de combustível sem perda de desempenho.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-16">
               {[
                 { icon: <Settings className="text-brand-orange" size={40} />, title: "Sistema HIOS III", desc: "Fluxo hidráulico regenerativo para ciclos mais rápidos e menor consumo." },
                 { icon: <Shield className="text-brand-orange" size={40} />, title: "Estruturas Reforçadas", desc: "Lança e braço fortalecidos com peças de aço fundido maciço." },
@@ -204,6 +204,13 @@ const Home = () => {
                 </div>
               ))}
             </div>
+
+            <Link to="#" className="inline-flex items-center gap-4 text-brand-blue font-black group btn-magnetic">
+              Saiba mais
+              <div className="bg-brand-orange p-3 rounded-full text-white group-hover:translate-x-2 transition-transform">
+                <ArrowRight size={20} />
+              </div>
+            </Link>
           </div>
         </div>
       </section>
