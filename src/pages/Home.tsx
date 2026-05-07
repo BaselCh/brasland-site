@@ -10,7 +10,7 @@ import product1 from '../assets/products/product-1.png';
 import product2 from '../assets/products/product-2.png';
 import diferencialImg from '../assets/diferencial.png';
 import parallaxBg from '../assets/parallax-bg.png';
-import evolucaoImg from '../assets/evolucao.png';
+import evolucaoVid from '../assets/vid.mp4';
 import insight1 from '../assets/insights/insight-1.png';
 import insight2 from '../assets/insights/insight-2.png';
 import insight3 from '../assets/insights/insight-3.png';
@@ -271,10 +271,13 @@ const Home = () => {
             </Link>
           </div>
           <div className="reveal-item order-1 lg:order-2 rounded-[40px] md:rounded-[60px] overflow-hidden shadow-3xl aspect-[4/3] group cursor-pointer relative">
-            <img 
-              src={evolucaoImg} 
-              alt="Evolução" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 scroll-image" 
+            <video 
+              src={evolucaoVid} 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
             />
             <div className="absolute inset-0 bg-brand-blue/10 group-hover:bg-transparent transition-colors duration-500"></div>
           </div>
