@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Play, Camera, MessageSquare, Mail, Phone, MapPin, Clock } from 'lucide-react';
 import logoBrand from '../assets/LOGOTIPO-BRANCO-E-LARANJA.svg';
 
@@ -27,8 +28,17 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <h4 className="text-brand-orange font-black text-sm uppercase tracking-widest mb-8">NAVEGAÇÃO</h4>
             <ul className="space-y-4 text-white/60 font-bold">
-              {['Home', 'Quem somos', 'Escavadeiras hidráulicas', 'Peças', 'Serviços', 'Contato'].map((item) => (
-                <li key={item}><a href="#" className="hover:text-brand-orange transition-colors">{item}</a></li>
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Escavadeiras', path: '/escavadeiras' },
+                { name: 'Insights', path: '/insights' },
+                { name: 'Peças', path: '#' },
+                { name: 'Serviços', path: '#' },
+                { name: 'Contato', path: '#' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link to={item.path} className="hover:text-brand-orange transition-colors">{item.name}</Link>
+                </li>
               ))}
             </ul>
           </div>

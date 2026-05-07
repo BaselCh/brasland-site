@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import heroExcavator from '../assets/hero-excavator.jpg';
 import hero2 from '../assets/hero2.png';
 
@@ -109,11 +109,11 @@ const HeroSlider = () => {
             {slides[current].subtitle}
           </p>
 
-          <div className="animate-text flex flex-wrap gap-5">
-            <button className="bg-white hover:bg-white/90 text-brand-blue px-10 py-4 rounded-xl font-bold transition-all shadow-2xl hover:translate-y-[-2px] text-[16px] leading-tight text-center">
-              Conhecer os<br/>equipamentos
+          <div className="animate-text flex flex-wrap gap-6">
+            <button className="btn-magnetic group bg-brand-orange text-white px-10 py-5 rounded-full font-black text-lg shadow-2xl hover:bg-white hover:text-brand-blue transition-all duration-500 flex items-center gap-3">
+              Conhecer os equipamentos <ArrowRight className="group-hover:translate-x-2 transition-transform" />
             </button>
-            <button className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-all text-[16px] flex items-center">
+            <button className="btn-magnetic bg-transparent border-2 border-white/30 text-white px-10 py-5 rounded-full font-black text-lg hover:bg-white/10 transition-all duration-500">
               Quem somos
             </button>
           </div>

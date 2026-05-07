@@ -36,7 +36,8 @@ const Header = () => {
   ];
 
   const isHomePage = location.pathname === '/';
-  const shouldShowBg = isScrolled || !isHomePage;
+  const isExcavatorsPage = location.pathname === '/escavadeiras';
+  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage);
   const textColorClass = shouldShowBg ? 'text-brand-blue' : 'text-white';
   const currentLogo = shouldShowBg ? logoBrand : logoWhite;
 

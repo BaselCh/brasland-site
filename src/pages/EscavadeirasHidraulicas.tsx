@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import product1 from '../assets/products/product-1.png';
 import product2 from '../assets/products/product-2.png';
 import diferencialImg from '../assets/diferencial.png';
+import engImg from '../assets/qqq1.png';
+import heroBg from '../assets/ttr1q.png';
+import ctaBg from '../assets/tim.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +47,33 @@ const EscavadeirasHidraulicas = () => {
       );
     });
 
+    // 3. Magnetic Buttons effect
+    const magneticBtns = document.querySelectorAll('.btn-magnetic');
+    magneticBtns.forEach((btn) => {
+      btn.addEventListener('mousemove', (e: any) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = btn.getBoundingClientRect();
+        const x = clientX - (left + width / 2);
+        const y = clientY - (top + height / 2);
+        
+        gsap.to(btn, {
+          x: x * 0.35,
+          y: y * 0.35,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: "elastic.out(1, 0.3)"
+        });
+      });
+    });
+
     return () => {
       lenis.destroy();
       ScrollTrigger.getAll().forEach(t => t.kill());
@@ -58,16 +88,16 @@ const EscavadeirasHidraulicas = () => {
   ];
 
   return (
-    <div ref={containerRef} className="bg-brand-light pt-20">
+    <div ref={containerRef} className="bg-brand-light">
       {/* HERO CAROUSEL (Simplified as a single powerful banner for now, expandable to carousel) */}
       <section className="relative h-[90vh] flex items-center overflow-hidden bg-brand-blue">
         <div className="absolute inset-0 z-0">
           <img 
-            src={diferencialImg} 
-            className="w-full h-full object-cover opacity-40 scale-105" 
+            src={heroBg} 
+            className="w-full h-full object-cover opacity-60 scale-105" 
             alt="Excavator background" 
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-blue/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-blue/70 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -80,10 +110,10 @@ const EscavadeirasHidraulicas = () => {
               Equipadas com tecnologia de fluxo inteligente, nossas escavadeiras entregam força máxima onde você mais precisa, com o menor consumo da categoria.
             </p>
             <div className="flex flex-wrap gap-6 reveal-item">
-              <button className="bg-brand-orange text-white px-10 py-5 rounded-full font-black hover:bg-white hover:text-brand-blue transition-all shadow-2xl flex items-center gap-3 group">
+              <button className="btn-magnetic bg-brand-orange text-white px-10 py-5 rounded-full font-black hover:bg-white hover:text-brand-blue shadow-2xl flex items-center gap-3 group">
                 Explorar Modelos <ArrowRight className="group-hover:translate-x-2 transition-transform" />
               </button>
-              <button className="border-2 border-white/20 text-white px-10 py-5 rounded-full font-black hover:bg-white/10 transition-all">
+              <button className="btn-magnetic border-2 border-white/20 text-white px-10 py-5 rounded-full font-black hover:bg-white/10">
                 Download Catálogo
               </button>
             </div>
@@ -93,45 +123,46 @@ const EscavadeirasHidraulicas = () => {
 
       {/* TWO COLUMN SECTION */}
       <section className="py-32 container mx-auto px-4 md:px-8 reveal-section">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="reveal-item">
             <h2 className="text-brand-orange font-black text-sm uppercase tracking-[0.3em] mb-6">Superioridade Técnica</h2>
             <h3 className="text-5xl md:text-6xl font-black text-brand-blue mb-10 leading-tight uppercase">
-              ENGENHARIA SEM<br/>COMPROMISSOS
+              Engenharia<br/><span className="text-brand-orange">Sem Compromissos.</span>
             </h3>
-            <div className="space-y-8 mb-12">
-              <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-orange/10 rounded-2xl flex items-center justify-center text-brand-orange">
-                  <Zap size={24} />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-brand-blue mb-2">Hidráulica Adaptativa</h4>
-                  <p className="text-brand-gray font-medium">Sistema que ajusta automaticamente a pressão conforme a dureza do solo, reduzindo esforço desnecessário.</p>
-                </div>
+            <div className="space-y-12 mb-12">
+              <div>
+                <h4 className="text-xl font-bold text-brand-blue mb-3">Sistema Hidráulico Adaptativo</h4>
+                <p className="text-brand-gray font-medium leading-relaxed">Sensores de carga inteligentes ajustam o fluxo de óleo em milisseگundos, garantindo ciclos rápidos e baixo consumo de combustível.</p>
               </div>
-              <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-orange/10 rounded-2xl flex items-center justify-center text-brand-orange">
-                  <ShieldCheck size={24} />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-brand-blue mb-2">Chassi Reforçado</h4>
-                  <p className="text-brand-gray font-medium">Estrutura em aço de alta resistência, projetada para durar 30% mais em ambientes corrosivos.</p>
-                </div>
+              <div>
+                <h4 className="text-xl font-bold text-brand-blue mb-3">Chassi Reforçado Tectônico</h4>
+                <p className="text-brand-gray font-medium leading-relaxed">Estrutura de aço de alta resistência soldada roboticamente para suportar as tensões torcionais mais severas em mineração e infraestrutura.</p>
               </div>
             </div>
-            <p className="text-brand-gray text-lg font-medium leading-relaxed italic border-l-4 border-brand-orange pl-6 py-2">
-              "A Brasland redefine o que significa potência controlada. Não é apenas sobre força, é sobre como essa força é aplicada."
-            </p>
+
+            {/* Refined Technical Stats Block */}
+            <div className="bg-white/40 backdrop-blur-md border border-gray-100 p-10 rounded-[50px] flex flex-col md:flex-row items-center gap-10 shadow-xl relative overflow-hidden group/stats mt-16">
+              <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl group-hover/stats:bg-brand-orange/10 transition-colors duration-700"></div>
+              
+              <div className="relative">
+                <div className="text-7xl font-black text-brand-orange leading-none drop-shadow-[0_10px_20px_rgba(255,103,31,0.2)]">25%</div>
+                <div className="absolute -top-4 -right-6 bg-brand-blue text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Power Up</div>
+              </div>
+
+              <div className="w-px h-16 bg-gray-200 hidden md:block"></div>
+
+              <div className="relative z-10">
+                <h4 className="text-2xl font-black text-brand-blue mb-2 uppercase italic">Maior Eficiência</h4>
+                <p className="text-brand-gray font-medium text-sm leading-relaxed max-w-xs">
+                  Em comparação com a geração anterior, otimizando o custo por tonelada movida em <span className="text-brand-blue font-bold">qualquer terreno.</span>
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="reveal-item relative">
-            <div className="rounded-[60px] overflow-hidden shadow-3xl bg-white p-8">
-              <img src={diferencialImg} alt="Engenharia" className="w-full h-auto rounded-[40px] transform hover:scale-105 transition-transform duration-1000" />
-            </div>
-            {/* Badge */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-orange rounded-full flex flex-col items-center justify-center text-white shadow-2xl border-8 border-brand-light transform rotate-12">
-              <span className="text-4xl font-black">25%</span>
-              <span className="text-[10px] font-black uppercase text-center leading-none px-4">Maior Eficiência<br/>Energética</span>
+            <div className="rounded-[40px] md:rounded-[60px] overflow-hidden shadow-3xl bg-white">
+              <img src={engImg} alt="Engenharia Hitachi" className="w-full h-auto transform hover:scale-105 transition-transform duration-1000" />
             </div>
           </div>
         </div>
@@ -160,24 +191,33 @@ const EscavadeirasHidraulicas = () => {
               </div>
             ))}
           </div>
+          <div className="mt-20 flex justify-center reveal-item">
+            <button className="btn-magnetic group bg-brand-orange text-white px-12 py-6 rounded-full font-black text-xl shadow-2xl hover:bg-brand-blue hover:scale-105 flex items-center gap-4">
+              Solicitar orçamento 
+              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/40 transition-colors">
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </div>
+            </button>
+          </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
       <section className="py-32 container mx-auto px-4 md:px-8 reveal-section">
-        <div className="bg-brand-blue rounded-[60px] p-16 md:p-24 text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <img src={diferencialImg} className="w-full h-full object-cover" alt="pattern" />
+        <div className="bg-brand-blue rounded-[60px] p-16 md:p-24 text-center relative overflow-hidden shadow-3xl">
+          <div className="absolute inset-0 z-0">
+            <img src={ctaBg} className="w-full h-full object-cover opacity-30" alt="CTA Background" />
+            <div className="absolute inset-0 bg-brand-blue/60 backdrop-blur-[2px]"></div>
           </div>
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-10 leading-tight uppercase">
-              PRONTO PARA ELEVAR SUA<br/><span className="text-brand-orange">PRODUTIVIDADE?</span>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight uppercase italic">
+              Pronto para elevar sua<br/><span className="text-brand-orange">produtividade?</span>
             </h2>
-            <p className="text-white/70 text-xl mb-12 font-medium">
-              Nossa equipe técnica está pronta para configurar a solução ideal para seu projeto.
+            <p className="text-white/80 text-xl mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+              Solicite agora um orçamento personalizado ou agende uma demonstração técnica com nossos especialistas.
             </p>
-            <button className="bg-brand-orange text-white px-16 py-6 rounded-full font-black text-lg hover:bg-white hover:text-brand-blue transition-all shadow-3xl transform hover:scale-105 active:scale-95">
-              Peça agora uma cotação
+            <button className="btn-magnetic bg-brand-orange text-white px-16 py-6 rounded-full font-black text-lg hover:bg-white hover:text-brand-blue shadow-3xl transform hover:scale-105 active:scale-95">
+              Solicitar orçamento
             </button>
           </div>
         </div>
