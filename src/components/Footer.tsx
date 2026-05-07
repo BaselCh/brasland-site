@@ -1,5 +1,5 @@
 import { Play, Camera, MessageSquare, Mail, Phone, MapPin, Clock } from 'lucide-react';
-import logoBrand from '../assets/LOGOTIPO-BRASLAND.svg';
+import logoBrand from '../assets/LOGOTIPO-BRANCO-E-LARANJA.svg';
 
 const Footer = () => {
   return (
@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand & Social */}
           <div className="lg:col-span-4">
             <div className="mb-8">
-              <img src={logoBrand} alt="Brasland" className="h-8 invert brightness-0" />
+              <img src={logoBrand} alt="Brasland" className="h-8" />
             </div>
             <p className="text-white/60 mb-10 max-w-sm font-medium leading-relaxed">
               Precisão global, expertise local. Provendo o Brasil com as soluções em máquinas pesadas mais confiáveis do mundo.
