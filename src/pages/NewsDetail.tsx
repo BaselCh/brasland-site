@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Search, ChevronRight, Calendar, Clock, CheckCircle2 } from 'lucide-react';
+import { Search, ChevronRight, Calendar, Clock } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
