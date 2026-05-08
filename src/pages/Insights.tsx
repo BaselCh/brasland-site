@@ -220,22 +220,24 @@ const Insights = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {[...efficiencyArticles, ...efficiencyArticles].slice(0, 3).map((article, idx) => (
-                <div key={`${article.id}-${idx}`} className="reveal-item group cursor-pointer">
-                  <Link to={`/insights/${article.id}`}>
-                    <div className="rounded-[40px] overflow-hidden aspect-video mb-6 shadow-xl relative">
-                      <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-blue px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">
-                        {article.category}
-                      </div>
+                <Link 
+                  key={`${article.id}-${idx}`} 
+                  to={`/insights/${article.id}`}
+                  className="reveal-item group block"
+                >
+                  <div className="rounded-[40px] overflow-hidden aspect-video mb-6 shadow-xl relative">
+                    <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-blue px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">
+                      {article.category}
                     </div>
-                    <h3 className="text-xl font-black text-brand-blue mb-4 leading-tight group-hover:text-brand-orange transition-colors uppercase italic line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <div className="flex items-center gap-4 text-brand-orange font-black text-xs group/link">
-                      SAIBA MAIS <ChevronRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
-                </div>
+                  </div>
+                  <h3 className="text-xl font-black text-brand-blue mb-4 leading-tight group-hover:text-brand-orange transition-colors uppercase italic line-clamp-2">
+                    {article.title}
+                  </h3>
+                  <div className="flex items-center gap-4 text-brand-orange font-black text-xs group/link">
+                    SAIBA MAIS <ChevronRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
               ))}
             </div>
           </section>
@@ -250,25 +252,27 @@ const Insights = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {[...maintenanceArticles, ...maintenanceArticles].slice(0, 3).map((article, idx) => (
-                <div key={`${article.id}-${idx}`} className="reveal-item group cursor-pointer">
-                  <Link to={`/insights/${article.id}`}>
-                    <div className="rounded-[40px] overflow-hidden aspect-video mb-6 shadow-xl relative">
-                      <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-blue px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">
-                        {article.category}
-                      </div>
+                <Link 
+                  key={`${article.id}-${idx}`} 
+                  to={`/insights/${article.id}`}
+                  className="reveal-item group block"
+                >
+                  <div className="rounded-[40px] overflow-hidden aspect-video mb-6 shadow-xl relative">
+                    <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-blue px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">
+                      {article.category}
                     </div>
-                    <h3 className="text-xl font-black text-brand-blue mb-4 leading-tight group-hover:text-brand-orange transition-colors uppercase italic line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="text-brand-gray text-sm font-medium mb-6 line-clamp-2 leading-relaxed">
-                      {article.excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 text-brand-orange font-black text-xs group/link">
-                      SAIBA MAIS <ChevronRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
-                </div>
+                  </div>
+                  <h3 className="text-xl font-black text-brand-blue mb-4 leading-tight group-hover:text-brand-orange transition-colors uppercase italic line-clamp-2">
+                    {article.title}
+                  </h3>
+                  <p className="text-brand-gray text-sm font-medium mb-6 line-clamp-2 leading-relaxed">
+                    {article.excerpt}
+                  </p>
+                  <div className="flex items-center gap-4 text-brand-orange font-black text-xs group/link">
+                    SAIBA MAIS <ChevronRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
               ))}
             </div>
           </section>

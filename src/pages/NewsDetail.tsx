@@ -1,130 +1,261 @@
-import { ArrowLeft, Share2, Calendar, User, Clock, ChevronRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Search, ChevronRight, Calendar, Clock, CheckCircle2 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+
+import heroBg from '../assets/ttr1q.png';
+import featuredImg from '../assets/featured-insight.png';
+import efficiencyImg from '../assets/efficiency-insight.png';
+import maintenanceImg from '../assets/maintenance-insight.png';
+import sideBannerImg from '../assets/side-banner-final.png';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const NewsDetail = () => {
   const { id } = useParams();
-  console.log("Viewing article:", id);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const lenis = new Lenis();
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // GSAP Reveal Animations
+    const sections = gsap.utils.toArray('.reveal-section');
+    sections.forEach((section: any) => {
+      gsap.fromTo(section.querySelectorAll('.reveal-item'),
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 90%",
+          }
+        }
+      );
+    });
+
+    return () => {
+      lenis.destroy();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, [id]);
+
+  const relatedArticles = [
+    {
+      id: 1,
+      title: "Maximizando a economia de combustível em escavações de alta altitude",
+      category: "EFICIÊNCIA",
+      image: featuredImg,
+      excerpt: "Descubra as configurações e modos de operação que economizam até 15% nos custos de combustível."
+    },
+    {
+      id: 2,
+      title: "Preditiva vs. Reativa: O verdadeiro custo da máquina parada",
+      category: "MANUTENÇÃO",
+      image: maintenanceImg,
+      excerpt: "Análise de como o monitoramento em tempo real pode dobrar a vida útil dos componentes hidráulicos."
+    },
+    {
+      id: 3,
+      title: "Landcros: A próxima geração de maquinário autônomo",
+      category: "FUTURO",
+      image: efficiencyImg,
+      excerpt: "Uma visão detalhada sobre como a automação está transformando a produtividade nos canteiros."
+    }
+  ];
 
   return (
-    <div className="bg-brand-light">
-      {/* Hero Header */}
-      <div className="relative h-[70vh] w-full overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1920" 
-          alt="Article Hero" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-brand-blue/20 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-20 text-white">
-          <div className="container mx-auto">
-            <Link to="/insights" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-12 font-bold transition-colors group">
-              <div className="bg-white/10 p-2 rounded-full group-hover:bg-brand-orange transition-all">
-                <ArrowLeft size={16} />
-              </div>
-              VOLTAR PARA INSIGHTS
-            </Link>
-            <span className="bg-brand-orange text-white px-6 py-1.5 rounded-full text-xs font-black tracking-widest mb-8 inline-block">EFICIÊNCIA</span>
-            <h1 className="text-4xl md:text-7xl font-black mb-10 max-w-5xl leading-tight uppercase italic tracking-tighter">
-              Maximizando a economia de combustível em escavações de alta altitude
+    <div ref={containerRef} className="bg-white min-h-screen">
+      {/* HERO SECTION */}
+      <section className="relative h-[45vh] flex items-center overflow-hidden bg-brand-blue">
+        <div className="absolute inset-0 bg-[#133365]">
+          <img 
+            src={heroBg} 
+            alt="Excavator" 
+            className="w-full h-full object-cover mix-blend-overlay opacity-40 grayscale"
+          />
+        </div>
+        <div className="container mx-auto px-4 md:px-8 relative z-10 pt-16">
+          <div className="reveal-section">
+            <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-4 reveal-item uppercase tracking-tighter italic scale-x-110 origin-left">
+              INSIGHTS
             </h1>
-            <div className="flex flex-wrap items-center gap-12 text-white/60 font-black text-xs uppercase">
-              <span className="flex items-center gap-2"><Calendar size={16} className="text-brand-orange" /> 15 MAI, 2026</span>
-              <span className="flex items-center gap-2"><User size={16} className="text-brand-orange" /> ENG. RICARDO SILVA</span>
-              <span className="flex items-center gap-2"><Clock size={16} className="text-brand-orange" /> 8 MIN DE LEITURA</span>
-            </div>
           </div>
+        </div>
+      </section>
+
+      {/* BREADCRUMBS */}
+      <div className="bg-gray-50 border-b border-gray-100 py-4">
+        <div className="container mx-auto px-4 md:px-8">
+          <nav className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-brand-gray/60">
+            <Link to="/" className="hover:text-brand-orange transition-colors">Home</Link>
+            <ChevronRight size={12} />
+            <Link to="/insights" className="hover:text-brand-orange transition-colors">Insights</Link>
+            <ChevronRight size={12} />
+            <span className="text-brand-blue truncate max-w-[300px]">Maximizando a economia de combustível em escavações de alta altitude</span>
+          </nav>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 md:px-8 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-          {/* Main Article */}
-          <article className="lg:col-span-8">
-            <div className="prose prose-xl max-w-none prose-headings:text-brand-blue prose-headings:font-black prose-headings:uppercase prose-p:text-brand-gray prose-p:font-medium prose-p:leading-relaxed">
-              <p className="text-2xl font-bold text-brand-blue mb-12 leading-relaxed italic border-l-4 border-brand-orange pl-8">
-                "A tecnologia HIOS III não é apenas sobre potência; é sobre a harmonia perfeita entre o fluxo hidráulico e a demanda do motor, especialmente onde o ar é rarefeito."
-              </p>
+      {/* MAIN CONTENT AREA */}
+      <div className="container mx-auto px-4 md:px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          {/* ARTICLE CONTENT */}
+          <article className="lg:col-span-8 reveal-section">
+            <div className="reveal-item">
+              <span className="text-brand-orange font-black text-xs tracking-[0.2em] uppercase mb-6 block">EFICIÊNCIA</span>
+              <h1 className="text-4xl md:text-5xl font-black text-brand-blue mb-8 leading-tight uppercase italic tracking-tight">
+                Maximizando a economia de combustível em escavações de alta altitude
+              </h1>
               
-              <p>
-                As operações em altitudes elevadas apresentam desafios únicos para motores de combustão interna e sistemas hidráulicos. Com a diminuição da densidade do ar, a eficiência da combustão cai e o risco de superaquecimento aumenta. Na Brasiland, entendemos que o tempo de inatividade nessas condições não é apenas caro, mas perigoso.
-              </p>
+              <div className="flex items-center gap-8 text-brand-gray font-bold text-xs uppercase tracking-widest mb-12 border-b border-gray-100 pb-8">
+                <span className="flex items-center gap-2"><Calendar size={14} className="text-brand-orange" /> 15 de Março, 2026</span>
+                <span className="flex items-center gap-2"><Clock size={14} className="text-brand-orange" /> 5min de leitura</span>
+              </div>
 
-              <h2 className="text-3xl font-black mt-16 mb-8">A CIÊNCIA DO HIOS III</h2>
-              <p>
-                O sistema HIOS III (Human Intelligent Operation System) desenvolvido pela Hitachi utiliza uma válvula regenerativa para acelerar o retorno do óleo hidráulico. Isso reduz a carga no motor e, consequentemente, o consumo de combustível em até 15% em comparação com modelos da geração anterior.
-              </p>
-
-              <div className="my-16 rounded-[40px] overflow-hidden shadow-3xl">
+              <div className="rounded-[50px] overflow-hidden mb-12 shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1579412623025-38ef40409951?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Internal Tech" 
-                  className="w-full h-auto"
+                  src={featuredImg} 
+                  alt="Featured machinery" 
+                  className="w-full h-auto object-cover"
                 />
               </div>
 
-              <h2 className="text-3xl font-black mt-16 mb-8">ADAPTAÇÃO AO TERRENO BRASILEIRO</h2>
-              <p>
-                Muitas das nossas maiores minas estão localizadas em regiões com topografias complexas. Através do monitoramento remoto ConSite, nossos engenheiros podem ajustar finamente os parâmetros de cada máquina para garantir que o torque máximo esteja disponível exatamente quando o balde penetra no solo rochoso.
-              </p>
-            </div>
+              <div className="prose prose-lg max-w-none prose-p:text-brand-gray prose-p:font-medium prose-p:leading-relaxed prose-strong:text-brand-blue">
+                <p className="text-xl font-bold text-brand-blue mb-8 leading-relaxed italic">
+                  Descubra as configurações e modos de operação que economizam até 15% nos custos de combustível sem perda de potência.
+                </p>
+                
+                <p>
+                  Empresas do setor de construção pesada estão adotando novas tecnologias para enfrentar um dos maiores desafios das operações em regiões montanhosas: o alto consumo de combustível.
+                </p>
 
-            {/* Tags */}
-            <div className="mt-20 pt-12 border-t border-gray-100">
-              <div className="flex flex-wrap gap-4">
-                {['Hitachi', 'Mineração', 'Tecnologia', 'Sustentabilidade', 'HIOS III'].map(tag => (
-                  <span key={tag} className="bg-gray-50 text-brand-blue px-6 py-2 rounded-full text-xs font-black uppercase hover:bg-brand-orange hover:text-white transition-colors cursor-pointer">
-                    #{tag}
-                  </span>
-                ))}
+                <p>
+                  Em altitudes elevadas, a menor concentração de oxigênio compromete a eficiência dos motores, exigindo maior esforço das máquinas e elevando os custos operacionais.
+                </p>
+
+                <p>
+                  Uma solução inovadora, apresentada recentemente por fabricantes do setor, combina ajustes inteligentes no sistema de injeção de combustível com modos de operação adaptativos.
+                </p>
+
+                <p>
+                  Esses sistemas utilizam sensores avançados para monitorar variáveis como altitude, temperatura e carga de trabalho, ajustando automaticamente o desempenho do motor em tempo real.
+                </p>
+
+                <p>
+                  De acordo com especialistas, essa abordagem pode gerar uma economia de até 15% no consumo de combustível, sem perda significativa de potência — um avanço relevante para obras em regiões remotas, onde o abastecimento pode ser caro e logisticamente complexo.
+                </p>
+
+                <p>
+                  Além da redução de custos, a tecnologia também contribui para a diminuição das emissões de carbono, alinhando-se às metas de sustentabilidade cada vez mais exigidas pelo setor. Operadores relatam ainda maior estabilidade no desempenho das máquinas, mesmo em condições extremas.
+                </p>
+
+                <p>
+                  A expectativa é que, nos próximos anos, essas soluções se tornem padrão em equipamentos voltados para mineração, construção de rodovias em áreas montanhosas e grandes projetos de infraestrutura em altitudes elevadas.
+                </p>
+
+                <p>
+                  Combinando eficiência, sustentabilidade e inovação, a nova geração de máquinas promete transformar a forma como obras em alta altitude são planejadas e executadas.
+                </p>
+
+                <div className="mt-12 pt-8 border-t border-gray-100">
+                  <p className="font-black text-brand-blue italic uppercase tracking-tighter">Por Equipe Brasland.</p>
+                </div>
               </div>
             </div>
           </article>
 
-          {/* Sidebar */}
-          <aside className="lg:col-span-4">
-            <div className="sticky top-40">
-              <div className="bg-brand-blue rounded-[50px] p-12 text-white shadow-3xl mb-12">
-                <h4 className="text-2xl font-black mb-8 leading-tight italic uppercase">COMPARTILHE ESTE INSIGHT</h4>
-                <div className="flex gap-4 mb-12">
-                  {[Share2, User, Clock].map((Icon, i) => (
-                    <button key={i} className="bg-white/10 p-4 rounded-2xl hover:bg-brand-orange transition-all border border-white/10">
-                      <Icon size={24} />
-                    </button>
-                  ))}
-                </div>
-                <div className="p-8 bg-white/5 rounded-[40px] border border-white/10">
-                  <h5 className="text-brand-orange font-black text-xs uppercase tracking-widest mb-4">Newsletter Tech</h5>
-                  <p className="text-sm font-medium text-white/70 mb-8 leading-relaxed">Fique por dentro das últimas inovações em infraestrutura.</p>
-                  <input type="email" placeholder="Seu melhor e-mail" className="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 mb-4 focus:outline-none focus:border-brand-orange font-bold text-sm" />
-                  <button className="w-full bg-brand-orange text-white py-4 rounded-2xl font-black hover:scale-105 transition-transform shadow-xl">ASSINAR AGORA</button>
-                </div>
-              </div>
-
-              {/* Related */}
-              <div className="pl-4">
-                <h4 className="text-brand-blue font-black text-sm uppercase tracking-widest mb-10 border-l-4 border-brand-orange pl-6">ARTIGOS RELACIONADOS</h4>
-                <div className="space-y-10">
-                  {[
-                    "O futuro da manutenção remota via satélite",
-                    "Novas escavadeiras Landcros chegam ao mercado brasileiro",
-                    "Redução de emissões em grandes projetos de infra"
-                  ].map((title, i) => (
-                    <Link key={i} to="#" className="group block">
-                      <h5 className="text-brand-blue font-black text-lg mb-3 leading-tight group-hover:text-brand-orange transition-colors uppercase italic italic tracking-tight">{title}</h5>
-                      <div className="flex items-center gap-2 text-brand-orange text-xs font-black">
-                        LER MAIS <ChevronRight size={14} />
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+          {/* SIDEBAR */}
+          <aside className="lg:col-span-4 space-y-12 reveal-section">
+            {/* Search */}
+            <div className="reveal-item">
+              <div className="relative group">
+                <input 
+                  type="text" 
+                  placeholder="Pesquisar" 
+                  className="w-full bg-gray-50 border-2 border-transparent rounded-[20px] py-4 pl-14 pr-6 focus:outline-none focus:border-brand-orange focus:bg-white transition-all font-bold text-sm"
+                />
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-blue/30 group-focus-within:text-brand-orange transition-colors" size={20} />
               </div>
             </div>
+
+            {/* Categories */}
+            <div className="reveal-item">
+              <h4 className="text-brand-blue font-black text-sm uppercase tracking-[0.2em] mb-8 border-l-4 border-brand-orange pl-6">Categorias</h4>
+              <ul className="space-y-4">
+                {["EFICIÊNCIA", "MANUTENÇÃO", "FUTURO", "ECONOMIA"].map((cat) => (
+                  <li key={cat}>
+                    <Link to="/insights" className="flex items-center justify-between group py-2">
+                      <span className="text-brand-gray font-bold text-xs uppercase tracking-widest group-hover:text-brand-orange transition-colors">{cat}</span>
+                      <ChevronRight size={14} className="text-brand-orange opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Feature Banner - Image Only */}
+            <div className="reveal-item shadow-2xl rounded-[40px] overflow-hidden">
+              <img 
+                src={sideBannerImg} 
+                alt="Banner Art" 
+                className="w-full h-auto block"
+              />
+            </div>
           </aside>
+
         </div>
       </div>
+
+      {/* RELATED ARTICLES SECTION */}
+      <section className="bg-gray-50 py-24 reveal-section">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="flex items-center justify-between mb-16 reveal-item">
+            <h2 className="text-3xl md:text-4xl font-black text-brand-blue uppercase italic">Artigos Relacionados</h2>
+            <div className="h-px flex-1 bg-brand-blue/10 mx-10 hidden md:block"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {relatedArticles.map((article) => (
+              <div key={article.id} className="reveal-item group">
+                <Link to={`/insights/${article.id}`}>
+                  <div className="rounded-[40px] overflow-hidden aspect-video mb-8 shadow-xl relative">
+                    <img 
+                      src={article.image} 
+                      alt={article.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
+                    />
+                    <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md text-brand-blue px-5 py-2 rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm">
+                      {article.category}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-black text-brand-blue mb-4 leading-tight group-hover:text-brand-orange transition-colors uppercase italic line-clamp-2">
+                    {article.title}
+                  </h3>
+                  <div className="flex items-center gap-3 text-brand-orange font-black text-xs group/link uppercase tracking-widest">
+                    Saiba mais <ChevronRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
 export default NewsDetail;
+

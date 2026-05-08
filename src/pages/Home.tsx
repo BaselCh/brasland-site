@@ -301,25 +301,30 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Insights Cards */}
             {[
               { id: 1, title: "Maximizando a economia de combustível em escavações de alta altitude", tag: "EFICIÊNCIA", img: insight1 },
               { id: 2, title: "Preditiva vs. Reativa: O verdadeiro custo da máquina parada", tag: "MANUTENÇÃO", img: insight2 },
               { id: 3, title: "Landcros: A próxima geração de maquinário autônomo", tag: "FUTURO", img: insight3 },
             ].map((article) => (
-              <div key={article.id} className="reveal-item group cursor-pointer bg-white/5 p-4 rounded-[40px] border border-white/10 hover:bg-white/10 transition-all duration-500">
+              <Link 
+                key={article.id} 
+                to={`/insights/${article.id}`}
+                className="reveal-item group cursor-pointer bg-white/5 p-4 rounded-[40px] border border-white/10 hover:bg-white/10 transition-all duration-500 block no-underline"
+              >
                 <div className="aspect-video rounded-[30px] overflow-hidden mb-8 shadow-2xl">
                   <img src={article.img} alt={article.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                 </div>
                 <div className="px-4 pb-4">
                   <p className="text-xs font-black text-brand-orange mb-3 uppercase tracking-widest">{article.tag}</p>
-                  <h3 className="text-2xl font-bold mb-6 group-hover:text-brand-orange transition-colors leading-tight">
+                  <h3 className="text-2xl font-bold mb-6 group-hover:text-brand-orange transition-colors leading-tight text-white">
                     {article.title}
                   </h3>
-                  <Link to={`/insights/${article.id}`} className="text-white/60 font-black text-sm flex items-center gap-2 group/btn hover:text-white">
+                  <div className="text-white/60 font-black text-sm flex items-center gap-2 group/btn group-hover:text-white transition-colors">
                     SAIBA MAIS <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
