@@ -133,7 +133,7 @@ const Insights = () => {
     <div ref={containerRef} className="bg-white min-h-screen">
       {/* HERO SECTION */}
       <section className="relative h-[45vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-[#133365]">
+        <div className="absolute inset-0 bg-brand-blue">
           <img 
             src={heroBg} 
             alt="Excavator" 

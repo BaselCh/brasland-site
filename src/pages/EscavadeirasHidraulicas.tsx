@@ -130,7 +130,7 @@ const EscavadeirasHidraulicas = () => {
             <div className="space-y-12 mb-12">
               <div>
                 <h4 className="text-xl font-bold text-brand-blue mb-3">Sistema Hidráulico Adaptativo</h4>
-                <p className="text-brand-gray font-medium leading-relaxed">Sensores de carga inteligentes ajustam o fluxo de óleo em milisseگundos, garantindo ciclos rápidos e baixo consumo de combustível.</p>
+                <p className="text-brand-gray font-medium leading-relaxed">Sensores de carga inteligentes ajustam o fluxo de óleo em milissegundos, garantindo ciclos rápidos e baixo consumo de combustível.</p>
               </div>
               <div>
                 <h4 className="text-xl font-bold text-brand-blue mb-3">Chassi Reforçado Tectônico</h4>

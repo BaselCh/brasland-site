@@ -29,7 +29,7 @@ const Header = () => {
       ]
     },
     { name: 'Peças', path: '#' },
-    { name: 'Servيços', path: '#' },
+    { name: 'Serviços', path: '#' },
     { name: 'Quem somos', path: '#' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contato', path: '#' },
