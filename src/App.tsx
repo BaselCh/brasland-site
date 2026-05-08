@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Insights from './pages/Insights';
 import NewsDetail from './pages/NewsDetail';
 import EscavadeirasHidraulicas from './pages/EscavadeirasHidraulicas';
+import Contato from './pages/Contato';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:id" element={<NewsDetail />} />
             <Route path="/escavadeiras" element={<EscavadeirasHidraulicas />} />
+            <Route path="/contato" element={<Contato />} />
           </Routes>
         </main>
         <Footer />
