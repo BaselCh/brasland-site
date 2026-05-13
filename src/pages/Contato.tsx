@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Wrench, Settings, DollarSign, Award, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Wrench, Settings, DollarSign, Award, Check, Briefcase, ExternalLink } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
 import heroBg from '../assets/33e3w.png';
 import sideImg from '../assets/44r4.png';
+import branch1 from '../assets/M123.png';
+import branch2 from '../assets/Me123.png';
+import careersBg from '../assets/rrt1.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -214,62 +217,64 @@ const Contato = () => {
         </div>
       </section>
 
+
+
       {/* SUPPORT SECTION */}
-      <section className="bg-gray-50 py-32 reveal-section">
+      <section className="py-24 bg-[#f8f9fa] reveal-section">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center mb-20 reveal-item">
-            <span className="text-brand-orange font-black tracking-[0.3em] uppercase text-xs">Suporte ao Cliente</span>
-            <h2 className="text-4xl md:text-5xl font-black text-brand-blue mt-4 uppercase italic">Suporte 24/7</h2>
-            <p className="text-brand-gray mt-6 max-w-2xl mx-auto font-medium">
+          <div className="text-center mb-16 reveal-item">
+            <span className="text-brand-orange font-bold tracking-[0.2em] uppercase text-xs block mb-4">Suporte ao Cliente</span>
+            <h2 className="text-5xl md:text-6xl font-black text-brand-blue uppercase italic mb-6 tracking-tighter">Suporte 24/7</h2>
+            <p className="text-brand-gray/80 text-lg font-medium max-w-2xl mx-auto">
               Despacho técnico de emergência disponível para todos os clientes da frota.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Card 1 */}
-            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 reveal-item group">
-              <div className="bg-brand-blue/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors">
-                <Wrench size={28} className="text-brand-blue group-hover:text-white transition-colors" />
+            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all reveal-item group border border-gray-100 h-full flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-[#f8f9fa] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors shadow-inner">
+                <Wrench className="text-brand-blue group-hover:text-white transition-colors" size={32} />
               </div>
-              <h3 className="text-lg font-black text-brand-blue uppercase mb-4">Serviço Técnico</h3>
-              <p className="text-brand-orange font-bold mb-4">0800 895 8922</p>
-              <p className="text-brand-gray text-sm leading-relaxed">
-                Manutenção no local, e diagnósticos para equipamentos pesados.
+              <h3 className="text-lg font-black text-brand-blue uppercase mb-4 tracking-tight">Serviço Técnico</h3>
+              <p className="text-brand-orange font-black text-lg mb-6">0800 895 8922</p>
+              <p className="text-brand-gray text-sm font-bold leading-relaxed">
+                Manutenção no local e diagnósticos para equipamentos pesados.
               </p>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 reveal-item group">
-              <div className="bg-brand-blue/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors">
-                <Settings size={28} className="text-brand-blue group-hover:text-white transition-colors" />
+            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all reveal-item group border border-gray-100 h-full flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-[#f8f9fa] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors shadow-inner">
+                <Settings className="text-brand-blue group-hover:text-white transition-colors" size={32} />
               </div>
-              <h3 className="text-lg font-black text-brand-blue uppercase mb-4">Peças Genuínas</h3>
-              <p className="text-brand-orange font-bold mb-4">pecas@brasland.com.br</p>
-              <p className="text-brand-gray text-sm leading-relaxed">
+              <h3 className="text-lg font-black text-brand-blue uppercase mb-4 tracking-tight">Peças Genuínas</h3>
+              <p className="text-brand-orange font-black text-lg mb-6">pecas@brasland.com.br</p>
+              <p className="text-brand-gray text-sm font-bold leading-relaxed">
                 Disponibilidade para checagem e entrega rápida para todos os modelos.
               </p>
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 reveal-item group">
-              <div className="bg-brand-blue/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors">
-                <DollarSign size={28} className="text-brand-blue group-hover:text-white transition-colors" />
+            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all reveal-item group border border-gray-100 h-full flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-[#f8f9fa] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors shadow-inner">
+                <DollarSign className="text-brand-blue group-hover:text-white transition-colors" size={32} />
               </div>
-              <h3 className="text-lg font-black text-brand-blue uppercase mb-4">Vendas e Orçamentos</h3>
-              <p className="text-brand-orange font-bold mb-4">+55 11 5000-4050</p>
-              <p className="text-brand-gray text-sm leading-relaxed">
+              <h3 className="text-lg font-black text-brand-blue uppercase mb-4 tracking-tight">Vendas e Orçamentos</h3>
+              <p className="text-brand-orange font-black text-lg mb-6">+55 11 5000-4050</p>
+              <p className="text-brand-gray text-sm font-bold leading-relaxed">
                 Encontre um representante autorizado Brasland na sua região.
               </p>
             </div>
 
             {/* Card 4 */}
-            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 reveal-item group">
-              <div className="bg-brand-blue/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors">
-                <Award size={28} className="text-brand-blue group-hover:text-white transition-colors" />
+            <div className="bg-white p-10 rounded-[40px] shadow-xl hover:shadow-2xl transition-all reveal-item group border border-gray-100 h-full flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-[#f8f9fa] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-orange transition-colors shadow-inner">
+                <Award className="text-brand-blue group-hover:text-white transition-colors" size={32} />
               </div>
-              <h3 className="text-lg font-black text-brand-blue uppercase mb-4">Certificação</h3>
-              <p className="text-brand-orange font-bold mb-4">treinamento@brasland.com.br</p>
-              <p className="text-brand-gray text-sm leading-relaxed">
+              <h3 className="text-lg font-black text-brand-blue uppercase mb-4 tracking-tight">Certificação</h3>
+              <p className="text-brand-orange font-black text-lg mb-6">treinamento@brasland.com.br</p>
+              <p className="text-brand-gray text-sm font-bold leading-relaxed">
                 Treinamento e certificação para operadores de maquinário Brasland.
               </p>
             </div>
@@ -277,30 +282,125 @@ const Contato = () => {
         </div>
       </section>
 
-      {/* MAP PLACEHOLDER / ADDRESS */}
-      <section className="py-32 reveal-section">
+      {/* FILIAIS SECTION */}
+      <section className="py-24 bg-white reveal-section">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="bg-brand-blue rounded-[60px] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
-              <MapPin size={400} className="text-white -mr-40 -mt-20" />
-            </div>
-            <div className="relative z-10 reveal-item">
-              <h2 className="text-4xl font-black text-white uppercase italic mb-8">Nossa Sede</h2>
-              <div className="space-y-6">
-                <div className="flex items-center gap-6 text-white/80">
-                  <MapPin className="text-brand-orange" size={24} />
-                  <p className="text-xl font-medium">Av. das Nações Unidas, 12901 - Brooklin, São Paulo - SP</p>
-                </div>
-                <div className="flex items-center gap-6 text-white/80">
-                  <MessageSquare className="text-brand-orange" size={24} />
-                  <p className="text-xl font-medium">Horário: Seg - Sex, 08h às 18h</p>
+          {/* Title Style from Reference */}
+          <div className="mb-20 reveal-item">
+            <span className="text-brand-orange font-bold tracking-[0.2em] uppercase text-sm block mb-4">
+              Nossa Presença
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-brand-blue uppercase italic leading-tight">
+              Filiais e Pontos de Atendimento
+            </h2>
+          </div>
+
+          <div className="space-y-24">
+            {/* Matriz */}
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 reveal-item group">
+              <div className="w-full lg:w-[45%] shrink-0 rounded-[40px] overflow-hidden shadow-2xl aspect-[4/3] lg:h-[450px]">
+                <img 
+                  src={branch1} 
+                  alt="Matriz LEM" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl md:text-3xl font-black text-brand-blue uppercase mb-8 italic leading-tight">
+                  Matriz - Luís Eduardo Magalhães - BA
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 bg-[#f8f9fa] rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-gray-100">
+                      <MapPin size={22} className="text-brand-orange" />
+                    </div>
+                    <div>
+                      <p className="text-lg font-bold text-brand-gray leading-relaxed">
+                        Av. Luís Eduardo Magalhães, 2241, Jardim das Acácias
+                      </p>
+                      <p className="text-lg font-bold text-brand-gray/60 uppercase">CEP: 47.850-000 - Luís Eduardo Magalhães / BA</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 bg-[#f8f9fa] rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-gray-100">
+                      <Phone size={22} className="text-brand-orange" />
+                    </div>
+                    <p className="text-xl font-black text-brand-blue">(77) 3628-9200</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="relative z-10 reveal-item">
-              <button className="bg-white text-brand-blue px-10 py-5 rounded-full font-black uppercase tracking-widest text-xs hover:bg-brand-orange hover:text-white transition-all shadow-2xl btn-magnetic">
-                Abrir no Google Maps
-              </button>
+
+            {/* Filial */}
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 reveal-item group">
+              <div className="w-full lg:w-[45%] shrink-0 rounded-[40px] overflow-hidden shadow-2xl aspect-[4/3] lg:h-[450px]">
+                <img 
+                  src={branch2} 
+                  alt="Filial São Desidério" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl md:text-3xl font-black text-brand-blue uppercase mb-8 italic leading-tight">
+                  Filial - São Desidério - BA
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 bg-[#f8f9fa] rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-gray-100">
+                      <MapPin size={22} className="text-brand-orange" />
+                    </div>
+                    <div>
+                      <p className="text-lg font-bold text-brand-gray leading-relaxed">
+                        Rod. BR 020, Qd. 03 Lt. 02A, CEP 47.827-000, 
+                      </p>
+                      <p className="text-lg font-bold text-brand-gray/60 uppercase">Roda Velha - Bahia</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 bg-[#f8f9fa] rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-gray-100">
+                      <Phone size={22} className="text-brand-orange" />
+                    </div>
+                    <p className="text-xl font-black text-brand-blue">(77) 3639-6616</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TRABALHE CONOSCO SECTION */}
+      <section className="py-24 reveal-section">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="relative rounded-[50px] p-10 md:p-16 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10 min-h-[320px]">
+            {/* Background Image with Blue Filter */}
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={careersBg} 
+                alt="Background" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-brand-blue/90 mix-blend-multiply"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-blue to-transparent opacity-50"></div>
+            </div>
+
+            <div className="relative z-10 max-w-2xl">
+              <h2 className="text-3xl md:text-5xl font-black text-white uppercase italic mb-6">Trabalhe Conosco</h2>
+              <p className="text-white/90 text-lg md:text-xl font-medium leading-relaxed">
+                Deseja trabalhar na Brasland Industrial? <br />
+                Acesse o link e confira as vagas em aberto.
+              </p>
+            </div>
+            <div className="relative z-10 shrink-0">
+              <a 
+                href="https://brasifagro.gupy.io/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-brand-orange text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-xs hover:bg-white hover:text-brand-blue transition-all shadow-2xl btn-magnetic flex items-center gap-4"
+              >
+                Candidatar-se
+                <ExternalLink size={18} />
+              </a>
             </div>
           </div>
         </div>
