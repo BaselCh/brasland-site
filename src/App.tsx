@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Insights from './pages/Insights';
 import NewsDetail from './pages/NewsDetail';
@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router basename="/brasland-site">
+    <Router>
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">
