@@ -28,8 +28,8 @@ const Header = () => {
         { name: 'CASE CX130C', path: '/pdp' },
       ]
     },
-    { name: 'Peças', path: '#' },
-    { name: 'Servيços', path: '#' },
+    { name: 'Peças', path: '/pecas' },
+    { name: 'Serviços', path: '#' },
     { name: 'Quem somos', path: '#' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contato', path: '/contato' },
@@ -40,7 +40,8 @@ const Header = () => {
   const isInsightsPage = location.pathname.startsWith('/insights');
   const isContatoPage = location.pathname === '/contato';
   const isPDPPage = location.pathname === '/pdp';
-  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage && !isInsightsPage && !isContatoPage && !isPDPPage);
+  const isPecasPage = location.pathname === '/pecas';
+  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage && !isInsightsPage && !isContatoPage && !isPDPPage && !isPecasPage);
   const textColorClass = shouldShowBg ? 'text-brand-blue' : 'text-white';
   const currentLogo = shouldShowBg ? logoBrand : logoWhite;
 

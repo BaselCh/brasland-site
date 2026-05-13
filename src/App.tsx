@@ -5,6 +5,7 @@ import NewsDetail from './pages/NewsDetail';
 import EscavadeirasHidraulicas from './pages/EscavadeirasHidraulicas';
 import Contato from './pages/Contato';
 import PDP from './pages/PDP';
+import Pecas from './pages/Pecas';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/escavadeiras" element={<EscavadeirasHidraulicas />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/pdp" element={<PDP />} />
+            <Route path="/pecas" element={<Pecas />} />
           </Routes>
         </main>
         <Footer />
