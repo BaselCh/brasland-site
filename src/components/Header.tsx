@@ -25,11 +25,11 @@ const Header = () => {
       dropdown: [
         { name: 'BR-X 500', path: '#' },
         { name: 'BR-X 220', path: '#' },
-        { name: 'CASE CX130C', path: '#' },
+        { name: 'CASE CX130C', path: '/pdp' },
       ]
     },
     { name: 'Peças', path: '#' },
-    { name: 'Serviços', path: '#' },
+    { name: 'Servيços', path: '#' },
     { name: 'Quem somos', path: '#' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contato', path: '/contato' },
@@ -39,7 +39,8 @@ const Header = () => {
   const isExcavatorsPage = location.pathname === '/escavadeiras';
   const isInsightsPage = location.pathname.startsWith('/insights');
   const isContatoPage = location.pathname === '/contato';
-  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage && !isInsightsPage && !isContatoPage);
+  const isPDPPage = location.pathname === '/pdp';
+  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage && !isInsightsPage && !isContatoPage && !isPDPPage);
   const textColorClass = shouldShowBg ? 'text-brand-blue' : 'text-white';
   const currentLogo = shouldShowBg ? logoBrand : logoWhite;
 
