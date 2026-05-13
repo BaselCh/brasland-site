@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowRight, Download, MessageSquare, Check, Shield, Zap, Settings, Activity } from 'lucide-react';
+import { ArrowRight, Download, MessageSquare, Shield, Zap, Settings, Activity } from 'lucide-react';
 
 import heroImg from '../assets/products/cx130c-hero.png';
 import sideImg from '../assets/products/cx130c-side.png';
