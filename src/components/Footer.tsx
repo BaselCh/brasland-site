@@ -30,9 +30,10 @@ const Footer = () => {
             <ul className="space-y-4 text-white/60 font-bold">
               {[
                 { name: 'Home', path: '/' },
+                { name: 'Quem somos', path: '/quem-somos' },
                 { name: 'Escavadeiras', path: '/escavadeiras' },
                 { name: 'Insights', path: '/insights' },
-                { name: 'Peças', path: '#' },
+                { name: 'Peças', path: '/pecas' },
                 { name: 'Serviços', path: '#' },
                 { name: 'Contato', path: '/contato' }
               ].map((item) => (

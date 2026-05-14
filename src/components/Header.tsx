@@ -30,7 +30,7 @@ const Header = () => {
     },
     { name: 'Peças', path: '/pecas' },
     { name: 'Serviços', path: '#' },
-    { name: 'Quem somos', path: '#' },
+    { name: 'Quem somos', path: '/quem-somos' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contato', path: '/contato' },
   ];
@@ -41,7 +41,8 @@ const Header = () => {
   const isContatoPage = location.pathname === '/contato';
   const isPDPPage = location.pathname === '/pdp';
   const isPecasPage = location.pathname === '/pecas';
-  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage && !isInsightsPage && !isContatoPage && !isPDPPage && !isPecasPage);
+  const isQuemSomosPage = location.pathname === '/quem-somos';
+  const shouldShowBg = isScrolled || (!isHomePage && !isExcavatorsPage && !isInsightsPage && !isContatoPage && !isPDPPage && !isPecasPage && !isQuemSomosPage);
   const textColorClass = shouldShowBg ? 'text-brand-blue' : 'text-white';
   const currentLogo = shouldShowBg ? logoBrand : logoWhite;
 
