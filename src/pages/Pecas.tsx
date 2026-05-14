@@ -77,6 +77,46 @@ const Pecas = () => {
       });
     });
 
+    // Vertical Stack Animation
+    if (stackContainerRef.current) {
+      const cards = stackContainerRef.current.querySelectorAll('.stack-card');
+      const texts = stackContainerRef.current.querySelectorAll('.stack-text');
+      const dots = stackContainerRef.current.querySelectorAll('.stack-dot');
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: stackContainerRef.current,
+          start: "top top",
+          end: "+=300%", // Faster scroll distance
+          pin: true,
+          scrub: 0.5, // More responsive scrub
+        }
+      });
+
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+        
+        // Card animation: Stack coming from bottom
+        tl.fromTo(card,
+          { yPercent: 120, rotate: 5, scale: 0.9 },
+          { yPercent: 0, rotate: 0, scale: 1, ease: "power2.inOut" },
+          i - 1
+        );
+
+        // Text transition logic
+        tl.to(texts[i-1], { opacity: 0, y: -20, filter: "blur(8px)", duration: 0.5 }, i - 1);
+        tl.fromTo(texts[i], 
+          { opacity: 0, y: 20, filter: "blur(8px)" },
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5 }, 
+          i - 1 + 0.3
+        );
+
+        // Progress indicators
+        tl.to(dots[i-1], { backgroundColor: "rgba(0,0,0,0.1)", scale: 1, duration: 0.5 }, i - 1);
+        tl.to(dots[i], { backgroundColor: "#FF671F", scale: 1.5, duration: 0.5 }, i - 1);
+      });
+    }
+
     return () => {
       lenis.destroy();
       ScrollTrigger.getAll().forEach(t => t.kill());
@@ -84,12 +124,39 @@ const Pecas = () => {
   }, []);
 
   const categories = [
-    { name: 'FILTROS', img: filtersImg, icon: <Settings size={24} /> },
-    { name: 'LUBRIFICANTES', img: lubricantsImg, icon: <Database size={24} /> },
-    { name: 'ELETRÔNICOS', img: electronicsImg, icon: <Zap size={24} /> },
-    { name: 'MATERIAL DE DESGASTE (GET)', img: wearPartsImg, icon: <Wrench size={24} /> },
-    { name: 'MATERIAL RODANTE', img: undercarriageImg, icon: <Activity size={24} /> },
+    { 
+      name: 'FILTROS', 
+      img: filtersImg, 
+      icon: <Settings size={24} />,
+      desc: "Proteção superior para seu motor. Nossos sistemas de filtragem capturam as menores partículas, garantindo máxima vida útil aos componentes."
+    },
+    { 
+      name: 'LUBRIFICANTES', 
+      img: lubricantsImg, 
+      icon: <Database size={24} />,
+      desc: "Eficiência em movimento. Formulações avançadas que reduzem o calor e o desgaste, mantendo sua máquina operando no pico de performance."
+    },
+    { 
+      name: 'ELETRÔNICOS', 
+      img: electronicsImg, 
+      icon: <Zap size={24} />,
+      desc: "Precisão digital no campo. Módulos e sensores de alta confiabilidade para controle total e diagnóstico inteligente da sua frota."
+    },
+    { 
+      name: 'MATERIAL DE DESGASTE (GET)', 
+      img: wearPartsImg, 
+      icon: <Wrench size={24} />,
+      desc: "Força bruta e resistência. Ferramentas de penetração no solo projetadas para durar mais nos terrenos mais desafiadores do Brasil."
+    },
+    { 
+      name: 'MATERIAL RODANTE', 
+      img: undercarriageImg, 
+      icon: <Activity size={24} />,
+      desc: "A base da durabilidade. Componentes de tração robustos que suportam as cargas mais pesadas com estabilidade absoluta."
+    },
   ];
+
+  const stackContainerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div ref={containerRef} className="bg-white overflow-x-hidden">
@@ -133,41 +200,84 @@ const Pecas = () => {
         </div>
       </section>
 
-      {/* CATEGORIES GRID */}
-      <section className="py-32 bg-white reveal-section">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="mb-20 text-center">
-            <h2 className="text-sm font-black text-brand-orange mb-4 uppercase tracking-[0.4em] reveal-item">COMPONENTES DE</h2>
-            <h3 className="text-4xl md:text-6xl font-black text-brand-blue uppercase italic reveal-item">PRECISÃO</h3>
-          </div>
+      {/* VERTICAL IMAGE STACK SECTION */}
+      <section ref={stackContainerRef} className="h-screen w-full bg-white relative overflow-hidden flex items-start pt-32 lg:pt-40">
+        <div className="container mx-auto px-4 md:px-8 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start h-full">
+            {/* Left Column: Fixed Layout for Texts */}
+            <div className="relative h-full flex flex-col justify-center order-2 lg:order-1">
+              <div className="mb-8">
+                <h2 className="text-sm font-black text-brand-orange mb-3 uppercase tracking-[0.4em]">COMPONENTES DE</h2>
+                <h3 className="text-4xl md:text-7xl font-black text-brand-blue uppercase italic leading-none">PRECISÃO</h3>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat, i) => (
-              <div 
-                key={i} 
-                className={`reveal-item group relative overflow-hidden rounded-[40px] h-[400px] shadow-2xl cursor-pointer ${i === 3 ? 'lg:col-span-2' : 'lg:col-span-1'}`}
-              >
-                <img 
-                  src={cat.img} 
-                  alt={cat.name} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-blue/20 to-transparent"></div>
-                <div className="absolute bottom-10 left-10 right-10">
-                  <div className="bg-brand-orange/20 backdrop-blur-md p-3 rounded-2xl w-fit mb-4 text-brand-orange border border-brand-orange/30">
-                    {cat.icon}
+              <div className="relative flex-grow">
+                {categories.map((cat, i) => (
+                  <div 
+                    key={i} 
+                    className={`stack-text absolute top-0 left-0 w-full flex flex-col gap-6 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                  >
+                    <div className="bg-brand-orange/10 backdrop-blur-md p-4 rounded-2xl w-fit text-brand-orange border border-brand-orange/20 shadow-sm">
+                      {cat.icon}
+                    </div>
+                    <div className="space-y-4">
+                      <div className="text-brand-orange font-black text-lg tracking-widest uppercase">0{i + 1} / 05</div>
+                      <h4 className="text-3xl md:text-5xl font-black text-brand-blue uppercase italic leading-tight">
+                        {cat.name}
+                      </h4>
+                      <p className="text-brand-gray text-lg md:text-xl leading-relaxed max-w-lg font-medium opacity-80">
+                        {cat.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-8">
+                      <Link to="/contato">
+                        <button className="btn-magnetic group flex items-center gap-4 bg-brand-blue text-white px-8 py-5 rounded-full font-black text-lg hover:bg-brand-orange transition-all duration-500 uppercase tracking-wider shadow-xl">
+                          Solicitar Orçamento
+                          <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                        </button>
+                      </Link>
+                    </div>
                   </div>
-                  <h4 className="text-2xl font-black text-white uppercase italic leading-tight">
-                    {cat.name}
-                  </h4>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Image Stack Container */}
+            <div className="relative h-[400px] lg:h-[70vh] flex items-center justify-center order-1 lg:order-2">
+              <div className="relative w-full aspect-[4/5] max-w-[500px]">
+                {categories.map((cat, i) => (
+                  <div 
+                    key={i} 
+                    className="stack-card absolute inset-0 rounded-[40px] lg:rounded-[60px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] bg-gray-100 border-4 border-white"
+                    style={{ zIndex: i }}
+                  >
+                    <img 
+                      src={cat.img} 
+                      alt={cat.name} 
+                      className="w-full h-full object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/60 via-transparent to-transparent"></div>
+                  </div>
+                ))}
+
+                {/* Vertical Dots Navigation */}
+                <div className="absolute -right-8 lg:-right-12 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-[100]">
+                  {categories.map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`stack-dot w-2.5 h-2.5 rounded-full transition-all duration-500 border border-brand-blue/10 ${i === 0 ? 'bg-brand-orange scale-150' : 'bg-gray-200'}`}
+                    ></div>
+                  ))}
                 </div>
-                <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="bg-white/10 backdrop-blur-md p-4 rounded-full border border-white/20">
-                    <ArrowRight className="text-white" />
-                  </div>
+
+                {/* Interaction Hint */}
+                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+                  <div className="w-[1px] h-10 bg-brand-blue animate-pulse"></div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-blue">Role para explorar</span>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
